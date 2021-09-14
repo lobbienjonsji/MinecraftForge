@@ -37,8 +37,8 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityCustomItemDecoration;
-import net.minecraftforge.items.ICustomItemDecoration;
+import net.minecraftforge.items.CapabilityItemDecoratorHandler;
+import net.minecraftforge.items.IItemDecoratorHandler;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.cache.CacheBuilder;
@@ -129,14 +129,14 @@ public class MinecraftForgeClient
             regionCache.put(Pair.of(world, position), Optional.of(cache));
     }
 
-    private static final Map<ItemStack, LazyOptional<ICustomItemDecoration>> customItemDecorationCache = new HashMap<>();
+    private static final Map<ItemStack, LazyOptional<IItemDecoratorHandler>> customItemDecorationCache = new HashMap<>();
     public static void onItemDecorations(Font font, ItemStack stack, int xOffset, int yOffset, @Nullable String stackSizeLabel)
     {
-        LazyOptional<ICustomItemDecoration> targetCapability = customItemDecorationCache.get(stack);
+        LazyOptional<IItemDecoratorHandler> targetCapability = customItemDecorationCache.get(stack);
         if (targetCapability == null)
         {
             ICapabilityProvider provider = stack;
-            targetCapability = provider.getCapability(CapabilityCustomItemDecoration.CUSTOM_ITEM_DECORATION_CAPABILITY, null);
+            targetCapability = provider.getCapability(CapabilityItemDecoratorHandler.ITEM_DECORATOR_HANDLER_CAPABILITY, null);
             customItemDecorationCache.put(stack, targetCapability);
             targetCapability.addListener(self -> customItemDecorationCache.put(stack, null));
         }

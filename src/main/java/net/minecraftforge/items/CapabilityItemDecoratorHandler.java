@@ -4,12 +4,12 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 
-public class CapabilityCustomItemDecoration {
-    @CapabilityInject(ICustomItemDecoration.class)
-    public static Capability<ICustomItemDecoration> CUSTOM_ITEM_DECORATION_CAPABILITY = null;
+public class CapabilityItemDecoratorHandler {
+    @CapabilityInject(IItemDecoratorHandler.class)
+    public static Capability<IItemDecoratorHandler> ITEM_DECORATOR_HANDLER_CAPABILITY = null;
 
     public static void register(RegisterCapabilitiesEvent event)
     {
-        event.register(ICustomItemDecoration.class);
+        event.register(IItemDecoratorHandler.class);
     }
 }
