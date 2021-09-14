@@ -32,7 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ClientRegistry
 {
     private static Map<Class<? extends Entity>, ResourceLocation> entityShaderMap = new ConcurrentHashMap<>();
-    
+
     /**
      * Registers a KeyBinding.
      * Call this during {@link net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent}.
